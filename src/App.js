@@ -4,18 +4,18 @@ import knights from "./images/knights.png";
 import ground from "./images/ground.jpg";
 import national from "./images/national.png";
 import team from "./team";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { setTeams } from "./action";
 import { useEffect } from "react";
 function App(props) {
   const dispatch = useDispatch();
+  const score = useSelector(state => state.score)
   useEffect(() => {
     const callapi = async () => {
       await dispatch(setTeams(team));
     };
     callapi();
   }, []);
-  const score = props.teamscore.teams;
   var sectionStyle = {
     width: "100%",
     height: "720px",
@@ -47,8 +47,8 @@ function App(props) {
         <h5 className="round">
           Second Quarter <span style={{ paddingLeft: "6px" }}>14:37</span>
         </h5>
-        {score.map((team) => (
-          <div className="grid-container stats">
+        {score.map((team,index) => (
+          <div className="grid-container stats" >
             <div className="knight">
               <div style={{ paddingLeft: "-23px", position: "absolute" }}>
                 <img src={knights} height="30px" width="37px" />
@@ -65,14 +65,10 @@ function App(props) {
               {team.away_team.name}
             </div>
           </div>
-        ))}
+          ))}  
       </section>
     </div>
   );
 }
-const mapStateToProps = (state) => {
-  return {
-    teamscore: state,
-  };
-};
-export default connect(mapStateToProps, { setTeams })(App);
+
+export default App;
