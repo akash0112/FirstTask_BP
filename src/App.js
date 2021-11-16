@@ -9,8 +9,6 @@ import { setTeams } from "./action";
 import { useEffect } from "react";
 function App(props) {
   const dispatch = useDispatch();
-  //  console.log(props.teamscore.teams);
-
   useEffect(() => {
     const callapi = async () => {
       await dispatch(setTeams(team));
