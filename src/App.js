@@ -18,16 +18,6 @@ function App(props) {
     callapi();
   }, []);
   const score = props.teamscore.teams;
-  console.log(
-    score.map((team) => {
-      console.log(team.away_team.name);
-    })
-  );
-  console.log(
-    score.map((team) => {
-      console.log(team.away_team.score);
-    })
-  );
   var sectionStyle = {
     width: "100%",
     height: "720px",
